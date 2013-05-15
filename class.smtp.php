@@ -180,11 +180,23 @@ class SMTP {
     }
 
     // connect to the smtp server
-    $this->smtp_conn = @fsockopen($host,    // the host of the server
+
+    if (function_exists('stream_context_create') && function_exists('stream_socket_client')) {
+    // stream_socket_client is more flexible - for example
+    // $socket_options = array('socket' => array('bindto' => $this->INTERFACE));
+    
+      $socket_options = array();
+      $socket_context = stream_context_create($socket_options);
+      $this->smtp_conn = stream_socket_client($host.":".$port, $errno,
+             $errstr, $tval, STREAM_CLIENT_CONNECT, $socket_context);
+    } else {
+      $this->smtp_conn = @fsockopen($host,    // the host of the server
                                  $port,    // the port to use
                                  $errno,   // error number if any
                                  $errstr,  // error message if any
                                  $tval);   // give up after ? secs
+
+    }
     // verify we connected properly
     if(empty($this->smtp_conn)) {
       $this->error = array('error' => 'Failed to connect to server',
