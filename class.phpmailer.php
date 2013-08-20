@@ -2417,8 +2417,8 @@ class PHPMailer {
    * @return string
    */
   protected function ServerHostname() {
-    if (!empty($this->Hostname)) {
-      $result = $this->Hostname;
+    if (!empty($this->Host)) {
+      $result = $this->Host;
     } elseif (isset($_SERVER['SERVER_NAME'])) {
       $result = $_SERVER['SERVER_NAME'];
     } else {
