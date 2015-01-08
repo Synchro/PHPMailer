@@ -27,7 +27,7 @@ $mail->Debugoutput = 'html';
 //Set the hostname of the mail server
 $mail->Host = 'smtp.mail.yahoo.com';
 
-//Set the SMTP port number - 587 for authenticated TLS, a.k.a. RFC4409 SMTP submission
+//Set the SMTP port number - 465 
 $mail->Port = 465;
 
 //Set the encryption system to use - ssl (deprecated) or tls
