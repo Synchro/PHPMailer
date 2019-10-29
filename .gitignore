@@ -1,9 +1,0 @@
-docs/*
-!docs/README.md
-test/message.txt
-test/testbootstrap.php
-build/
-vendor/
-*.pem
-composer.lock
-.php_cs.cache
